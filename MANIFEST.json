@@ -242,7 +242,7 @@
     "RELEASE_NOTES.md": "95e9787b00b77ce5698a6df88178ff1562bd050c7d1cb32b394f7e39f05e43c6",
     "REPRODUCE.md": "11034ad3b6034e5c988cc269313755e201be98cc314843bfb5c6784074f7e681",
     "SHA256SUMS": "7215557a830383611c806be2a0f1725dc3c93860ad2707cac6457df576341cc1",
-    "VERIFICATION.md": "17f2204878124b1e8c23d048cb47a3c2c07f3c04a046e48ce7be3d36cc3f91ac",
+    "VERIFICATION.md": "df86c203ee8e83884f14f8ebfeb88347a2628e9ec70c845c5a8c933985475cbd",
     "baseline/README.md": "a5dbfde05cc5c54b846319b368d03c3b844b29eb8c5103987b980ac9657e5acb",
     "baseline/reproduce_baseline.sh": "32de96032ab1b55d19fdcd1e04e0f5a6b10a187633aa280e9ee76aee9f03c584",
     "baseline/train.py": "a3c6bcf13735bc85c52129ded68f839090dffdc266ebc3810dc61b2e6ea5e7e8",
@@ -255,6 +255,7 @@
     "get_dataset.py": "ab721a6d13c03c23a6a504219d8fd7dbc39ac55d76dcef2306f08c626ae92c44",
     "measurements.json": "9ba81a7010e7982453eabf5fa80fd9ab1a403d53743c992d369e36fb421efa1d",
     "meta.json": "011a4c0b989705ce2a8577e387e0cf96856cc8e9c65f7c51fbbffd699944d13d",
+    "qualification.json": "afc85455f0eeaa390170051b6f6808f7ccfd3bfae613c69dfa8b2593a35342ed",
     "quality.json": "ca07571caa43e1a0f6fd77c0ed28f535d7ed3c794f6441c6483ce0663acee23c"
   },
   "baseline_command": "sh baseline/reproduce_baseline.sh ./task",
@@ -318,31 +319,12 @@
     }
   },
   "qualification": {
-    "qualified_at": "2026-10-27T10Tue21Tue13Z",
     "gate_version": "1.5.0",
-    "job": "ec-merger-003",
-    "result": "passed; 0 failed checks of 46 on the full artifact on the worker (same check set as the 002 pass: leakage incl. declared high-cardinality sector_divisions, timing event_time instant, contract current_snapshot vintage with training_label_timing declared, splits incl. clustered positive events 45/44, runner meta counts)",
+    "ok": true,
+    "failed_checks": [],
+    "result": "PASSED",
     "artifact_version": "e5a98dfc9c05d0b087ed2dead21004fbbd972e415d2174469371a908bcaf90ad",
-    "acceptance": "exact-byte --accept verified on the worker before any reference was computed: 'ACCEPTED: /output/extract matches the qualified artifact e5a98dfc9c05d0b0'",
-    "report": "private staging release 425292628 (tag job-ec-merger-003, draft); local copies preserved at .factory/ec-merger-003/{qualification.json,references.json,acceptance.txt,summary.json}",
-    "superseded": "ec-merger-002 artifact 2527012bcd34c543... was a real runner-compatibility defect: its meta.json lacked the description/split keys the benchmark's bench/workdir.py reads (task.json generation and render_program both KeyError), which the gate's runner.meta_json_keys check did not test (gate requires only target/positive_label/id_columns/columns/rows/positive_rate). Fixed in build.py (meta.json now carries all eight workdir keys; CSV bytes unchanged: train/eval sha256 identical to 002); one rebuild for this structural defect. The gate gap (required-keys list omits name/description/split) is recorded in STATE.md for a separate reviewable gate change; not patched in this session.",
-    "splits": {
-      "train": {
-        "rows": 5406,
-        "positives": 217,
-        "positive_rate": 0.040141
-      },
-      "eval": {
-        "rows": 1770,
-        "positives": 46,
-        "positive_rate": 0.025989
-      },
-      "holdout": {
-        "rows": 2915,
-        "positives": 46,
-        "positive_rate": 0.015786
-      }
-    }
+    "report": "qualification.json"
   },
   "baseline": {
     "job": "ec-merger-baseline-001",

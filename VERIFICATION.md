@@ -75,9 +75,12 @@ on arrival before anything else was done.
 
 ## Where the raw evidence lives
 
-The factory repository (private during review) preserves: the gate report and
-references under `.factory/ec-merger-003/`, the baseline result and logs under
-`.factory/ec-merger-baseline-001/`, the worker-written staging manifests for both
-jobs in `earino/dataset-factory-staging` (releases `job-ec-merger-003`,
-`job-ec-merger-baseline-001`), and the full candidate record with probes at
-`candidates/ec-merger-phase2-opening/`.
+The gate's own qualification report ships with this package as `qualification.json`
+(gate 1.5.0, the exact checks and evidence the worker executed over the full
+artifact). The factory repository (private during review) preserves the full
+candidate record with probes at `candidates/ec-merger-phase2-opening/`, the
+baseline evidence at `candidates/ec-merger-phase2-opening/baseline/`
+(`baseline_result.json`, `expected_artifact.json`), and the worker-written
+staging manifests for both jobs in `earino/dataset-factory-staging` (releases
+`job-ec-merger-003`, `job-ec-merger-baseline-001`), which is where the
+collected gate report, references and baseline logs remain durably downloadable.
