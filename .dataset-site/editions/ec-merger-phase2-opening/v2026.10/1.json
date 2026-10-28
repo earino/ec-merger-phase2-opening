@@ -1,0 +1,156 @@
+{
+  "artifact_version": "e96929efbbc4fcb84d2986a7e32f83f9c5fec5395124439fb3404faff2e9e662",
+  "assets": {
+    "meta.json": {
+      "bytes": 1342,
+      "download": "https://github.com/earino/ec-merger-phase2-opening/releases/download/v2026.10/meta.json",
+      "hf_path": "meta.json",
+      "sha256": "b139620d5f469c17faa974574220878f8c1f70accf6d975243a018049fae5ef9"
+    },
+    "private-holdout.csv": {
+      "bytes": 253649,
+      "download": "https://github.com/earino/ec-merger-phase2-opening/releases/download/v2026.10/private-holdout.csv",
+      "hf_path": "data/private-holdout.csv",
+      "sha256": "5867e34f3ebf714b9ec0ef307989cb4296438148390a6a5ea2bcf88795f703fd"
+    },
+    "public-eval.csv": {
+      "bytes": 155077,
+      "download": "https://github.com/earino/ec-merger-phase2-opening/releases/download/v2026.10/public-eval.csv",
+      "hf_path": "data/public-eval.csv",
+      "sha256": "4fb28c0908e4c79ccf194de3b27f2996c05efc0f01ec4074c953a7eb697f24f6"
+    },
+    "public-train.csv": {
+      "bytes": 429048,
+      "download": "https://github.com/earino/ec-merger-phase2-opening/releases/download/v2026.10/public-train.csv",
+      "hf_path": "data/public-train.csv",
+      "sha256": "1619b6f4ad4a7dab0f437335c231f727f6f5c5f0ea02b3454366f5a71ab90a44"
+    },
+    "quality.json": {
+      "bytes": 21855,
+      "download": "https://github.com/earino/ec-merger-phase2-opening/releases/download/v2026.10/quality.json",
+      "hf_path": "quality.json",
+      "sha256": "0203fdf934a0564fdb8d2910372986424547f25448fd603a79e95d4ac02fb7ec"
+    }
+  },
+  "baseline": {
+    "metrics": {
+      "Evaluation ROC AUC": 0.6973
+    },
+    "scope": "0.6973"
+  },
+  "configs": [],
+  "dataset": "ec-merger-phase2-opening",
+  "domain": "Competition policy / merger control",
+  "github_repository": "earino/ec-merger-phase2-opening",
+  "hf_repository": "earino/ec-merger-phase2-opening",
+  "licenses": {
+    "attribution": "European Commission, Directorate-General for Competition - EU Competition: Merger case publications (open data case register), https://data.europa.eu/data/datasets/cc7e224e-6569-40f0-8037-d3389aa0fae7, vintage of 2026-10-27. Contains Commission-owned content licensed under CC BY 4.0.",
+    "citation": "European Commission, Directorate-General for Competition. EU Competition: Merger case publications (machine-readable case register, open data). https://competition-cases.ec.europa.eu/ . Licensed under CC BY 4.0 (Commission reuse notice). Derived dataset: EU merger Phase II opening prediction task (not a Commission official product).",
+    "code": "MIT",
+    "compilation_scope": "Our contribution - the notified-case eligibility frame, the derived Phase II opener label, the notification-date feature derivations, the temporal partition, and the packaging - is dedicated to the public domain under CC0-1.0. The dedication covers only our contribution: the underlying merger case register keeps its own designation and remains subject to the Commission's CC BY 4.0 reuse terms, whose attribution condition carries through to every copy of the derived data. Nothing here relicenses the source or presents CC0 as the source's terms.",
+    "data_compilation": "CC0-1.0",
+    "source_data": "CC-BY-4.0"
+  },
+  "limitations": [
+    "Derived research dataset, not an official European Commission product; the Commission has not reviewed, authorised or endorsed it.",
+    "Retrospective research only. The register publishes a single current snapshot with no historical vintages, so no point-in-time, real-time or operational forecasting claim is supported.",
+    "Sector taxonomy labels are current-vintage NACE Rev. 2 applied across all eras; presenting them as notification-era coding is an unsupported claim.",
+    "Training-label timing is unverified: labels are the register's current values, observed at the fetch snapshot, with no availability ledger.",
+    "Feature availability is fixture-verified at three cross-era points, not row-by-row against notification-era vintages; the sector trio is unverified for the 2,904 pre-2006 notifications.",
+    "Prevalence falls across splits (train 4.01%, eval 2.60%, holdout 1.58%); eval and holdout are prevalence-shifted relative to training - an out-of-distribution property, reported not hidden.",
+    "34 pending cases (no opener and no terminal decision at fetch) are censored and counted, never treated as negative; censoring never decides another row's membership.",
+    "The stock baseline trails the required sector-division comparator on identical eval rows (0.6973 vs 0.7679, paired difference -0.0706, 95% CI [-0.1558, +0.0168], inconclusive with a negative observed gap); headroom above the prior is not demonstrated.",
+    "Positives cluster by enforcement era and acquisition waves beyond the day-level event key; per-notification-year positive counts are reported beside every score.",
+    "The labeled holdout is downloadable by design; keep it and its labels outside every evaluated agent's workspace.",
+    "The dataset ships register metadata only (case numbers, dates, NACE codes, decision types, case titles); underlying decision documents are not redistributed.",
+    "Source data is the Commission's published open data under its own terms (CC BY 4.0, attribution preserved); our compilation is dedicated CC0-1.0 and code MIT."
+  ],
+  "post": {
+    "paragraphs": [
+      "The European Commission publishes a machine-readable register of merger cases, updated as one current snapshot. The contribution here is not access: it is the frozen 2026-10-27 vintage, the declaration that the prediction instant is the notification date, and the derived label - whether an in-depth Phase II investigation (Art. 6(1)(c)) was opened. 10,125 eligible notified cases with 309 positives, split into train, labeled eval and a labeled holdout that ships but is never scored in development.",
+      "The release ships a reproducible runner-contract baseline at eval AUC 0.6973, with every comparison published beside it because the comparisons decide what the number means. A sector-division prior reaches 0.7679 on the identical 1,770 eval rows: the paired difference is -0.0706 with a 95% dependence-aware interval of [-0.1558, +0.0168] - inconclusive, and the observed gap is negative. The stock baseline does not beat the prior; headroom above it is not demonstrated by the packaged evidence. Both numbers are quoted together or not at all.",
+      "Before publication an independent adversarial audit was run against the staged package. It passed integrity, temporal separation and 3,796 frozen shortcut predictors (no label-blind AUC in the extreme bands, zero cross-split identity recovery), and returned PUBLISH WITH CONDITIONS: retrospective-use honesty throughout the metadata, corrected census and censoring counts, shipped comparator and bootstrap recipes, and disclosed dependence across repeated transactions. All four conditions were applied, the corrected package was re-qualified through gate 1.5.0 over the exact accepted bytes, and only then was anything made public.",
+      "This is retrospective research over a pinned snapshot, nothing more. The register retains no historical vintages, so point-in-time reconstruction is impossible to verify and no operational or forecasting claim is made: the sector coding is the register's current-vintage NACE Rev. 2 taxonomy applied across all eras, and label timing is observed as of the fetch, not as of notification."
+    ],
+    "title": "Will the Commission open Phase II? A frozen snapshot for retrospective research"
+  },
+  "qualification": {
+    "gate_version": "1.5.0",
+    "result": "PASSED"
+  },
+  "record_sha256": "2a8303161799d58d5646844a333b2b0bbded389a4c6513fd2bc5488ad21f75e9",
+  "release_date": "2026-10-28",
+  "release_tag": "v2026.10",
+  "schema_version": 1,
+  "site_revision": 1,
+  "source": {
+    "name": "European Commission, Directorate-General for Competition - EU Competition: Merger case publications (open data, machine-readable case register, coverage from November 1990, updated daily)",
+    "url": "https://data.europa.eu/data/datasets/cc7e224e-6569-40f0-8037-d3389aa0fae7"
+  },
+  "splits": {
+    "eval": {
+      "positives": 46,
+      "rows": 1770
+    },
+    "holdout": {
+      "positives": 46,
+      "rows": 2915
+    },
+    "train": {
+      "positives": 217,
+      "rows": 5406
+    }
+  },
+  "suitability": {
+    "artifact_version": "e96929efbbc4fcb84d2986a7e32f83f9c5fec5395124439fb3404faff2e9e662",
+    "corrections": [
+      "2026-10-27/28 descriptor correction per the independent pre-flip audit (PUBLISH WITH CONDITIONS): meta.json and quality.json regenerated (retrospective-use honesty, metadata contradiction fixes, recipes shipped, repeated-transaction dependence disclosed); superseded artifact e5a98dfc9c05d0b0..., CSVs byte-identical; re-qualified as e96929ef by worker job ecm-requal-002 before any public visibility"
+    ],
+    "cross_row_audit": {
+      "scope": "Gate 1.5.0 executed its two declared probes on the full artifact on the worker across all three splits (unique case_number donor; repeat case_title with a 365-day offset): 0 rows covered, 0 mismatches, 0 ambiguous on both probes and all splits. Rows are unique notified cases and every feature is a same-row attribute, so no outcome-bearing cross-row exposure is constructed; the probes are a bounded mechanism, not a proof, and no broader attack search was run.",
+      "status": "bounded_no_recovery"
+    },
+    "dataset": "ec-merger-phase2-opening",
+    "decision": "retain_restricted",
+    "evaluation_access": "isolated_rows",
+    "historical_availability": "partial",
+    "limitations": [
+      "The register retains no historical vintages (bulk feed since 2025-03-18; S3 objects expire after 30 days), so a reverse-history probe is not performable: this is retrospective research over the pinned 2026-10-27 snapshot, never a certified historical forecasting setup.",
+      "Feature availability is fixture-verified at three cross-era points (M.877 1997, M.4731 2007 with its OJ prior notice, M.10188 2021) but not verified row-by-row against notification-era vintages; the sector taxonomy labels are current-vintage NACE Rev 2 applied across all eras.",
+      "Training-label timing is unverified: labels are the register's current values, observed as of the fetch snapshot, with no availability ledger.",
+      "Positives cluster by enforcement era and sector acquisition waves beyond the day-level event key; per-notification-year positive counts (1-22, median about 8) are reported beside every score.",
+      "Prevalence falls across splits (train 4.01%, eval 2.60%, holdout 1.58%): the eval and holdout windows are prevalence-shifted relative to training, an out-of-distribution property reported, not hidden.",
+      "Pending cases with neither an opener nor a terminal decision at fetch (33, overwhelmingly live 2020s filings) are censored and counted per split and year; their labels are unobserved, not negative, and censoring never decides another row's membership.",
+      "The ever-adopted label keeps M.10188 positive despite its 2024-09-06 post-ECJ withdrawal of the opener; M.3333 stays positive on its 2007-03-01 opener with the 2004 pre-notification opener excluded by rule.",
+      "The stock runner baseline trails the required sector-division comparator on the identical eval rows (0.6973 vs 0.7679; paired difference -0.0706, 95% CI [-0.1558, +0.0168], inconclusive with the observed gap negative). Headroom above that prior is NOT demonstrated by the packaged evidence; both numbers must be quoted together."
+    ],
+    "release_tag": "v2026.10",
+    "reviewed_on": "2026-10-28",
+    "schema_version": 1,
+    "selection": "prediction_time",
+    "summary": "Retained for retrospective model-development research. Every shipped feature is a same-row case attribute fixed at notification (an administrative record), and eligibility reads only notification-time fields, but the register publishes a single current snapshot with no historical vintages, so training-label timing and full-row historical availability are unverified and no operational or point-in-time forecasting claim is supported.",
+    "supported_uses": [
+      "Retrospective train/validation model-development experiments under the documented timing, vintage and selection limitations",
+      "Final evaluation only under a protocol that isolates the labeled holdout from agent development and prevents any later row influencing an earlier prediction"
+    ],
+    "training_label_timing": "unverified",
+    "unsupported_uses": [
+      "Claims of verified real-time, operational or point-in-time forecasting validity",
+      "Treating development/validation (eval-split) scores as untouched final-test results",
+      "Presenting current-vintage register values (notably the NACE Rev 2 sector coding) as the values an analyst at notification time would have seen"
+    ],
+    "vintage": "current_snapshot"
+  },
+  "summary": "Research task: at a merger case's notification date, from case attributes fixed that day, predict whether the European Commission opens an in-depth Phase II investigation - a retrospective research task over the DG COMP machine-readable merger case register.",
+  "task_type": "binary-classification",
+  "title": "EC merger Phase II opening",
+  "urls": {
+    "catalog": "https://earino.github.io/dataset-factory-site/",
+    "github": "https://github.com/earino/ec-merger-phase2-opening",
+    "github_release": "https://github.com/earino/ec-merger-phase2-opening/releases/tag/v2026.10",
+    "huggingface": "https://huggingface.co/datasets/earino/ec-merger-phase2-opening",
+    "huggingface_version": "https://huggingface.co/datasets/earino/ec-merger-phase2-opening/tree/v2026.10",
+    "version": "https://earino.github.io/ec-merger-phase2-opening/versions/v2026.10/",
+    "website": "https://earino.github.io/ec-merger-phase2-opening/"
+  }
+}
